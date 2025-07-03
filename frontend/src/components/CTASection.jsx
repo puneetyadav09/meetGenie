@@ -33,9 +33,12 @@ const CTASection = () => {
               <span>Start Free Trial</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
-            <button className="flex items-center space-x-2 text-white px-8 py-4 rounded-lg border-2 border-white/30 hover:border-white/50 transition-all">
+            <Link 
+              to="/schedule-demo"
+              className="flex items-center space-x-2 text-white px-8 py-4 rounded-lg border-2 border-white/30 hover:border-white/50 transition-all"
+            >
               <span>Schedule Demo</span>
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">

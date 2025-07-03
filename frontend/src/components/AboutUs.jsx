@@ -100,8 +100,8 @@ const AboutUs = () => {
               We're always looking for talented individuals who share our passion for 
               transforming workplace communication through AI innovation.
             </p>
-            <button disabled className="bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors cursor-not-allowed">
-              Hiring Closed
+            <button className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+              View Open Positions
             </button>
           </div>
         </div>

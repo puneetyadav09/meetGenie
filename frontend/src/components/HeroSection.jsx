@@ -33,10 +33,13 @@ const HeroSection = () => {
             >
               Start Free Trial
             </Link>
-            <button className="flex items-center space-x-2 text-gray-700 px-8 py-4 rounded-lg border-2 border-gray-200 hover:border-purple-300 transition-all">
+            <Link 
+              to="/schedule-demo"
+              className="flex items-center space-x-2 text-gray-700 px-8 py-4 rounded-lg border-2 border-gray-200 hover:border-purple-300 transition-all"
+            >
               <Play className="h-5 w-5" />
               <span>Watch Demo</span>
-            </button>
+            </Link>
           </div>
 
           <div className="relative max-w-5xl mx-auto">

@@ -29,25 +29,25 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className='text-center md:text-left'>
-            <h3 className="text-white font-semibold mb-4">Product</h3>
+          <div>
+            <h3 className="text-white font-semibold mb-4 text-center md:text-left">Product</h3>
             <ul className="space-y-3">
-              <li><a href="#features" className="hover:text-purple-400 transition-colors">Features</a></li>
-              <li><a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">API</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Integrations</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Security</a></li>
+              <li><Link to="/features" className="hover:text-purple-400 transition-colors">Features</Link></li>
+              <li><Link to="/pricing" className="hover:text-purple-400 transition-colors">Pricing</Link></li>
+              <li><Link to="/api" className="hover:text-purple-400 transition-colors">API</Link></li>
+              <li><Link to="/integrations" className="hover:text-purple-400 transition-colors">Integrations</Link></li>
+              <li><Link to="/security" className="hover:text-purple-400 transition-colors">Security</Link></li>
             </ul>
           </div>
 
-          <div className='text-center md:text-left'>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
+          <div>
+            <h3 className="text-white font-semibold mb-4 text-center md:text-left">Company</h3>
             <ul className="space-y-3">
-              <li><a href="#about" className="hover:text-purple-400 transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Blog</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Press</a></li>
-              <li><a href="#" className="hover:text-purple-400 transition-colors">Contact</a></li>
+              <li><Link to="/about" className="hover:text-purple-400 transition-colors">About Us</Link></li>
+              <li><Link to="/careers" className="hover:text-purple-400 transition-colors">Careers</Link></li>
+              <li><Link to="/blog" className="hover:text-purple-400 transition-colors">Blog</Link></li>
+              <li><Link to="/press" className="hover:text-purple-400 transition-colors">Press</Link></li>
+              <li><Link to="/contact" className="hover:text-purple-400 transition-colors">Contact</Link></li>
             </ul>
           </div>
         </div>
@@ -68,13 +68,13 @@ const Footer = () => {
               </div>
             </div>
 
-            <div className='text-center md:text-left'>
+            <div>
               <h4 className="text-white font-semibold mb-4">Quick Links</h4>
               <div className="grid grid-cols-2 gap-3">
                 <Link to="/login" className="hover:text-purple-400 transition-colors">Login</Link>
                 <Link to="/signup" className="hover:text-purple-400 transition-colors">Sign Up</Link>
-                <a href="#" className="hover:text-purple-400 transition-colors">Privacy Policy</a>
-                <a href="#" className="hover:text-purple-400 transition-colors">Terms of Service</a>
+                <Link to="/privacy" className="hover:text-purple-400 transition-colors">Privacy Policy</Link>
+                <Link to="/terms" className="hover:text-purple-400 transition-colors">Terms of Service</Link>
               </div>
             </div>
           </div>
