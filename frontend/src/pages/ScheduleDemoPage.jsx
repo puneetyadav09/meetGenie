@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PageLayout from '../components/PageLayout'
+import PageLayout from '../layouts/PageLayout'
 import { Calendar, Clock, Users, Video, CheckCircle, ArrowRight } from 'lucide-react';
 
 const ScheduleDemoPage = () => {

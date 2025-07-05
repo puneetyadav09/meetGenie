@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Bot, Eye, EyeOff, Mail, Lock, User, Building } from 'lucide-react';
+// import { signupUser } from '../services/authService';
+// import { supabase } from '../../../backend/utils/supabaseClient';
+import { supabase } from '../services/supabaseClient';
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,10 +18,28 @@ const SignupPage = () => {
   });
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // In a real app, this would handle registration
-    navigate('/dashboard');
+    const { firstName, lastName, email, company, password, confirmPassword } = formData;
+
+    if (password != confirmPassword) {
+      alert("Passwords don't match");
+      return;
+    }
+
+    const result = await signupUser(formData);
+    const { error } = await supabase
+                            .from('user_profiles')
+                            .insert(formData);
+
+    if (error) {
+      alert(error);
+    } else {
+      alert('Signup successful!');
+      navigate('/login');
+    }
+    // navigate('/dashboard');
   };
 
   const handleChange = (e) => {

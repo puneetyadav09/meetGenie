@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Mic, Brain, Users, Clock, FileText, Zap, Globe, Shield, Search, BarChart, Calendar, MessageSquare } from 'lucide-react';
 
 const FeaturesPage = () => {

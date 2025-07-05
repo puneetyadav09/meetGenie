@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Calendar, Download, ExternalLink, Award, Newspaper, Users } from 'lucide-react';
 
 const PressPage = () => {

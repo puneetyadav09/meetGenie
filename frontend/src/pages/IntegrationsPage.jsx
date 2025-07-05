@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Zap, Calendar, MessageSquare, Mail, FileText, Video, Slack, Chrome } from 'lucide-react';
 
 const IntegrationsPage = () => {

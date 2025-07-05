@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Users, Headphones } from 'lucide-react';
 
 const ContactPage = () => {

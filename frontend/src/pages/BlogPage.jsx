@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Calendar, User, ArrowRight, Tag } from 'lucide-react';
 
 const BlogPage = () => {

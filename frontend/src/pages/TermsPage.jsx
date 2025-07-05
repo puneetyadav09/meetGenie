@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { FileText, Shield, Users, AlertTriangle, Scale, Globe } from 'lucide-react';
 
 const TermsPage = () => {

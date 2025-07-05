@@ -45,15 +45,15 @@ const AboutUs = () => {
             </p>
             <div className="flex items-center space-x-4">
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600">2023</div>
+                <div className="text-2xl font-bold text-purple-600">2025</div>
                 <div className="text-sm text-gray-600">Founded</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600">50+</div>
+                <div className="text-2xl font-bold text-blue-600">20+</div>
                 <div className="text-sm text-gray-600">Team Members</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-green-600">100+</div>
+                <div className="text-2xl font-bold text-green-600">10+</div>
                 <div className="text-sm text-gray-600">Enterprise Clients</div>
               </div>
             </div>
@@ -100,8 +100,8 @@ const AboutUs = () => {
               We're always looking for talented individuals who share our passion for 
               transforming workplace communication through AI innovation.
             </p>
-            <button className="bg-purple-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
-              View Open Positions
+            <button disabled className="bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-gray-700 transition-colors cursor-not-allowed">
+              Hiring Closed
             </button>
           </div>
         </div>

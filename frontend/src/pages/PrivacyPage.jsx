@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Shield, Eye, Lock, Users, Globe, FileText } from 'lucide-react';
 
 const PrivacyPage = () => {

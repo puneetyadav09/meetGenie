@@ -80,11 +80,11 @@ const Testimonials = () => {
           <div className="text-center">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 items-center">
               <div>
-                <div className="text-3xl font-bold text-purple-600 mb-2">10,000+</div>
+                <div className="text-3xl font-bold text-purple-600 mb-2">500+</div>
                 <div className="text-gray-600">Active Users</div>
               </div>
               <div>
-                <div className="text-3xl font-bold text-blue-600 mb-2">50M+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">5k+</div>
                 <div className="text-gray-600">Minutes Transcribed</div>
               </div>
               <div>

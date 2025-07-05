@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Shield, Lock, Eye, Server, FileCheck, Users, Globe, AlertTriangle } from 'lucide-react';
 
 const SecurityPage = () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Code, Key, Zap, Shield, Book, Terminal } from 'lucide-react';
 
 const APIPage = () => {

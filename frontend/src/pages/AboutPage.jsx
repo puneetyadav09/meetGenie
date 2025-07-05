@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Users, Award, Zap, Globe, Target, Heart, Lightbulb, Rocket } from 'lucide-react';
 
 const AboutPage = () => {

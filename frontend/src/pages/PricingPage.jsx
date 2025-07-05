@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { Check, Zap, Crown, Building, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

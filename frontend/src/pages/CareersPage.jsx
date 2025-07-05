@@ -1,5 +1,5 @@
 import React from 'react';
-import PageLayout from '../components/PageLayout';
+import PageLayout from '../layouts/PageLayout';
 import { MapPin, Clock, Users, Heart, Zap, Globe, Coffee, Laptop } from 'lucide-react';
 
 const CareersPage = () => {
