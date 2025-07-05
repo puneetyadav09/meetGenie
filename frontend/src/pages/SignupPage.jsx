@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Bot, Eye, EyeOff, Mail, Lock, User, Building } from 'lucide-react';
-// import { signupUser } from '../services/authService';
-// import { supabase } from '../../../backend/utils/supabaseClient';
-import { supabase } from '../services/supabaseClient';
+import supabase from '/src/utils/supabase.js';
+import bcrypt from 'bcryptjs';
+import { loginUser } from '../utils/auth';
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,18 +28,30 @@ const SignupPage = () => {
       return;
     }
 
-    const result = await signupUser(formData);
-    const { error } = await supabase
-                            .from('user_profiles')
-                            .insert(formData);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    if (error) {
-      alert(error);
-    } else {
-      alert('Signup successful!');
-      navigate('/login');
-    }
-    // navigate('/dashboard');
+    const { data, error } = await supabase
+      .from('user_profiles')
+      .insert([
+        {
+          first_name: firstName,
+          last_name: lastName,
+          email: email,
+          company: company,
+          password: hashedPassword,
+        }
+      ])
+      .select()
+      .single();
+
+  if (error) {
+    alert("Signup failed: " + error.message);
+  } else {
+    loginUser(data);
+    alert("Signup successful");
+    navigate("/login");
+  }
+    
   };
 
   const handleChange = (e) => {

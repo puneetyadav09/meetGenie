@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Bot, Eye, EyeOff, Mail, Lock } from 'lucide-react';
+import supabase from "../utils/supabase";
+import bcrypt from "bcryptjs";
+import { loginUser } from "../utils/auth";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,10 +13,32 @@ const LoginPage = () => {
   });
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // In a real app, this would handle authentication
-    navigate('/dashboard');
+    const { email, password } = formData;
+    const { data: user, error } = await supabase
+                                        .from("user_profiles")
+                                        .select("*")
+                                        .eq("email", email)
+                                        .single();
+
+    if (error || !user) {
+      alert("Invalid email or user not found.");
+      return;
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      alert("Invalid password.");
+      return;
+    }
+
+    // Simulate token or login state
+    loginUser(user); // instead of direct localStorage
+    alert("Login successful!");
+    navigate("/dashboard");
   };
 
   const handleChange = (e) => {

@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import { Bot, Plus, Search, Calendar, Clock, Users, FileText, Settings, Bell, LogOut, Mic, MicOff, Play, Pause, Download } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { logoutUser } from "../utils/auth";
+
 
 const Dashboard = () => {
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logoutUser();        
+    navigate("/login"); 
+  };
 
   const recentMeetings = [
     {
@@ -80,9 +88,9 @@ const Dashboard = () => {
                   className="w-8 h-8 rounded-full object-cover"
                 />
               </div>
-              <Link to="/" className="p-2 text-gray-400 hover:text-gray-600">
+              <button onClick={handleLogout} className="p-2 text-gray-400 hover:text-gray-600">
                 <LogOut className="h-6 w-6" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>
