@@ -4,6 +4,7 @@ import { Bot, Eye, EyeOff, Mail, Lock, User, Building } from 'lucide-react';
 import supabase from '/src/utils/supabase.js';
 import bcrypt from 'bcryptjs';
 import { loginUser } from '../utils/auth';
+import PageLayout from '../layouts/PageLayout';
 
 const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -62,7 +63,8 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex items-center justify-center p-4">
+    <PageLayout>
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <div className="text-center mb-8">
@@ -272,6 +274,7 @@ const SignupPage = () => {
         </div>
       </div>
     </div>
+    </PageLayout>
   );
 };
 

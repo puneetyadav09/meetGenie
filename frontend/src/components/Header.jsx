@@ -48,7 +48,7 @@ const Header = () => {
 
         {isMenuOpen && (
           <div className="md:hidden border-t border-gray-200 py-4">
-            <div className="flex flex-col space-y-4">
+            <div className="flex flex-col space-y-4 text-center">
               <Link to="/features" className="text-gray-600 hover:text-purple-600 transition-colors">Features</Link>
               <a href="#how-it-works" className="text-gray-600 hover:text-purple-600 transition-colors">How it Works</a>
               <Link to="/pricing" className="text-gray-600 hover:text-purple-600 transition-colors">Pricing</Link>

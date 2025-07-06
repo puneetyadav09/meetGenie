@@ -4,6 +4,7 @@ import { Bot, Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import supabase from "../utils/supabase";
 import bcrypt from "bcryptjs";
 import { loginUser } from "../utils/auth";
+import PageLayout from '../layouts/PageLayout';
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,31 +14,62 @@ const LoginPage = () => {
   });
   const navigate = useNavigate();
 
+  const getPublicIP = async () => {
+    try {
+      const response = await fetch("https://api.ipify.org?format=json");
+      const data = await response.json();
+      return data.ip;
+    } catch (err) {
+      console.error("IP fetch failed:", err);
+      return "Unknown";
+    }
+  };  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // In a real app, this would handle authentication
     const { email, password } = formData;
+    // 1. Get user by email
     const { data: user, error } = await supabase
-                                        .from("user_profiles")
-                                        .select("*")
-                                        .eq("email", email)
-                                        .single();
+      .from("user_profiles")
+      .select("*")
+      .eq("email", email)
+      .single();
 
     if (error || !user) {
       alert("Invalid email or user not found.");
       return;
     }
 
+    // 2. Verify password
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) {
       alert("Invalid password.");
       return;
     }
 
-    // Simulate token or login state
-    loginUser(user); // instead of direct localStorage
+    // 3. Store auth user locally
+    loginUser(user);
     alert("Login successful!");
+
+    console.log("User for login_logs insert:", user);
+
+
+    // 4. Log login info securely
+    try {
+      const ip = await getPublicIP(); // Fetch IP address
+      await supabase.from("login_logs").insert([
+        {
+          user_id: user.id,
+          ip_address: ip,
+          user_agent: navigator.userAgent
+        }
+      ]); 
+    } catch (err) {
+      console.error("Failed to log login activity:", err);
+    }
+
+    // 5. Redirect
     navigate("/dashboard");
   };
 
@@ -49,7 +81,8 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex items-center justify-center p-4">
+    <PageLayout>
+      <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         <div className="bg-white rounded-2xl shadow-2xl p-8">
           <div className="text-center mb-8">
@@ -169,6 +202,7 @@ const LoginPage = () => {
         </div>
       </div>
     </div>
+    </PageLayout>
   );
 };
 
