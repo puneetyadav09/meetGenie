@@ -1,6 +1,6 @@
 import React from 'react';
 import PageLayout from '../layouts/PageLayout';
-import { Shield, Eye, Lock, Users, Globe, FileText } from 'lucide-react';
+import { Shield, Eye, Lock, Users, Globe, FileText, Zap } from 'lucide-react';
 
 const PrivacyPage = () => {
   const sections = [

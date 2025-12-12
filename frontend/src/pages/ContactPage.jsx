@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
-import PageLayout from '../layouts/PageLayout';
-import { Mail, Phone, MapPin, Clock, Send, MessageSquare, Users, Headphones } from 'lucide-react';
+import PageLayout from "../layouts/PageLayout";
+import {
+  Mail, Phone, MapPin, Clock, Send, MessageSquare,
+  Users, Headphones, CheckCircle, AlertCircle
+} from 'lucide-react';
+import { supabase } from '../utils/supabase';
+import toast from 'react-hot-toast';
+
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +18,9 @@ const ContactPage = () => {
     inquiryType: 'general'
   });
 
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -19,11 +28,36 @@ const ContactPage = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    setLoading(true);
+  
+    const toastId = toast.loading('Sending your message...');
+  
+    try {
+      const { error: submitError } = await supabase
+        .from('contact_submissions')
+        .insert([formData]);
+  
+      if (submitError) throw submitError;
+  
+      toast.success('Message sent successfully!', { id: toastId });
+      setSuccess(true);
+      setFormData({
+        name: '',
+        email: '',
+        company: '',
+        subject: '',
+        message: '',
+        inquiryType: 'general'
+      });
+    } catch (err) {
+      toast.error(err.message || 'Failed to send message', { id: toastId });
+    } finally {
+      setLoading(false);
+    }
   };
+  
 
   const contactMethods = [
     {
@@ -89,8 +123,35 @@ const ContactPage = () => {
     { value: 'careers', label: 'Careers' }
   ];
 
+  if (success) {
+    return (
+      <PageLayout
+        title="Thank You!"
+        description="Your message has been sent successfully. We'll get back to you soon."
+      >
+        <section className="py-20">
+          <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <CheckCircle className="h-8 w-8 text-green-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">Message Sent Successfully!</h2>
+            <p className="text-gray-600 mb-8">
+              Thank you for contacting MeetGenie. We've received your message and will respond within 24 hours.
+            </p>
+            <button
+              onClick={() => setSuccess(false)}
+              className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+            >
+              Send Another Message
+            </button>
+          </div>
+        </section>
+      </PageLayout>
+    );
+  }
+
   return (
-    <PageLayout 
+    <PageLayout
       title="Contact Us"
       description="Get in touch with our team. We're here to help with any questions about MeetGenie."
     >

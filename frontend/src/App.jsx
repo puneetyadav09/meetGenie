@@ -1,8 +1,11 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
 
 import Loader from './components/Loader';
 import PrivateRoute from './routes/PrivateRoute';
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 const LandingPage = lazy(() => import("./pages/LandingPage"));
 const LoginPage = lazy(() => import('./pages/LoginPage'));
@@ -22,15 +25,31 @@ const PrivacyPage = lazy(() => import('./pages/PrivacyPage'));
 const TermsPage = lazy(() => import('./pages/TermsPage'));
 const ScheduleDemoPage = lazy(() => import('./pages/ScheduleDemoPage'));
 
+
 function App() {
   return (
     <Router>
       <Suspense fallback={<Loader />}>
+        <Toaster position="top-right" toastOptions={{ duration: 4000 }} />
         <div className="min-h-screen bg-gray-50">
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
+            <Route 
+              path="/login" 
+              element={
+                <AuthProvider>
+                  <LoginPage />
+                </AuthProvider>
+              } 
+            />
+            <Route 
+              path="/signup" 
+              element={
+                <AuthProvider>
+                  <SignupPage />
+                </AuthProvider>
+              } 
+            />
             <Route
               path="/dashboard"
               element={
@@ -52,6 +71,7 @@ function App() {
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             <Route path="/schedule-demo" element={<ScheduleDemoPage />} />
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </div>
       </Suspense>
